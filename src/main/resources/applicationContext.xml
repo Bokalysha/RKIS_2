@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <bean
+        id="sellerBean"
+        class="bokalysha.dependences.Seller">
+        <property name="name" value="${sellerName}"/>
+    </bean>
+
+    <bean
+        id="cashBean"
+        class="bokalysha.dependences.CashRegister">
+        <constructor-arg value="1999.82"/>
+    </bean>
+
+    <bean
+        id="shelfBean"
+        class="bokalysha.dependences.Shelf">
+        <property name="product" value="${productName}"/>
+    </bean>
+
+    <bean
+        id="shopBean"
+        class="bokalysha.Shop">
+        <constructor-arg name="seller" ref="sellerBean"/>
+        <constructor-arg name="cashRegister" ref="cashBean"/>
+        <constructor-arg name="shelf" ref="shelfBean"/>
+    </bean>
+</beans>
